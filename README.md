@@ -25,6 +25,14 @@ You can check more details about the nanodegree program on this link: <a href=ht
 
 During this program, I will learn to design data models, build data warehouses and data lakes, automate data pipelines, and work with massive datasets. At the end of the program, I’ll combine my new skills by completing a capstone project.
 
+#### **Course 1 – Data Modeling**
+
+In this course, I’ll learn to create relational and NoSQL data models to fit the diverse needs of data
+consumers. I’ll understand the differences between different data models, and how to choose the
+appropriate data model for a given situation. I’ll also build fluency in PostgreSQL and Apache Cassandra.
+
+You can find my demos and exercices related to this course [here](./emos%20and%20Exercises/Introduction%20to%20Data%20Modeling).
+
 
 <!-- CONTACT -->
 
