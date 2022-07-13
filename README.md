@@ -31,7 +31,7 @@ In this course, I’ll learn to create relational and NoSQL data models to fit t
 consumers. I’ll understand the differences between different data models, and how to choose the
 appropriate data model for a given situation. I’ll also build fluency in PostgreSQL and Apache Cassandra.
 
-You can find my demos and exercices related to this course [here](./Demos%20and%20Exercises/Introduction%20to%20Data%20Modeling).
+You can find my demos and exercices related to this course [here](.Demos%20and%20Exercises/Data%20Modeling).
 
 
 <!-- CONTACT -->
