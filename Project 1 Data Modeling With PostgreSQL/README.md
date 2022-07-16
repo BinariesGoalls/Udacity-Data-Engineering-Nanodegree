@@ -49,7 +49,7 @@ Sample:
 
 ### ERD
 
-In this case I knew before-hand that the data types are structured (JSONS) and the amount of data we need to analyze is not big enough to require big data related solutions.
+In this case I knew before-hand that the data types are structured (JSONs) and the amount of data we need to analyze is not big enough to require big data related solutions.
 
 For that reason I used the Star Schema for data modeling in this ETL pipeline, there is one fact table containing all the metrics associated to each event songplays, and four dimensions tables, containing complementary informations about songs, artists, users and time, each with a primary key that is being referenced from the fact table. This structure will allow the analysts to do joins and aggregations of the data efficiently.
 
