@@ -57,3 +57,66 @@ For that reason I used the Star Schema for data modeling in this ETL pipeline, t
 You can see an Entity Eelationship Diagram (ERD) of the built data model below:
 
 ![database](./images/Project%201%20ERD.png)
+
+## Project structure
+
+Files:
+
+|  File / Folder   |                         Description                          |
+| :--------------: | :----------------------------------------------------------: |
+|       data       | Folder at the root of the project, where all song and log data resides |
+|      images      |  Folder at the root of the project, where ERD image is stored  |
+|  sql_queries.py  |      Contains the SQL queries used for data modeling and ETL      |
+| create_tables.py |         Drops and creates all tables. This will reset the tables when executed |
+|    test.ipynb    | Some codes to test and test the proper functioning and assure the datai ntegrity |
+|    etl.ipynb     | Step by step to process one file from song_data and log_data and load the data into the tables |
+|      etl.py      | Processes all files from song_data and log_data and loads them into the tables |
+|      README      |                         Readme file                          |
+
+
+
+## How to Run
+
+Clone the repository into a local machine using
+
+```sh
+git clone https://github.com/BinariesGoalls/Udacity-Data-Engineering-Nanodegree
+```
+
+### Prerequisites
+
+These are the tools necessaries to run the program.
+
+* Python
+* PostgreSQL
+* psycopg2, glob and pandas python libraries
+
+### Steps
+
+Follow the steps to extract and load the data into the data model.
+
+1. Navigate to `Project 1 Data Modeling with PostgreSQL` folder
+
+2. Run `create_tables.py` to create/reset the tables by
+
+   ```python
+   python create_tables.py
+   ```
+
+3. Run ETL process and load data into database by 
+
+   ```python
+   python etl.py
+   ```
+
+4. Use `test.ipynb` to check whether the data has been loaded into database
+
+
+
+<!-- CONTACT -->
+
+## Contact
+
+Alisson lima - ali2slima10@gmail.com
+
+Linkedin: [https://www.linkedin.com/in/binariesgoalls/](https://www.linkedin.com/in/binariesgoalls/)
