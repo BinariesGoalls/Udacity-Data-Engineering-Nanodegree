@@ -33,6 +33,8 @@ appropriate data model for a given situation. I’ll also build fluency in Postg
 
 You can find my demos and exercices related to this course [here](./Demos%20and%20Exercises/Data%20Modeling).
 
+Project 1: Data Modeling with Postgres can be found [here](./Project%201%20Data%20Modeling%20With%20PostgreSQL). 
+
 
 <!-- CONTACT -->
 
