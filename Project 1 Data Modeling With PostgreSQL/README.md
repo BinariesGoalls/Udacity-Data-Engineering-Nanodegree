@@ -1,8 +1,19 @@
-<h3 align="center">Data Modeling with PostgreSQL</h3>
+<!-- PROJECT LOGO -->
+<br />
+
 <p align="center">
- Udacity Nanodegree Course Project 1
- <br />
+ </a>
+ <h1 align="center">Data Engineering Nanodegree</h1>
+ <p align="center">
+  Udacity Nanodegree
+  <br />
+  <a href=https://github.com/BinariesGoalls/Udacity-Data-Engineering-Nanodegree><strong>Explore the repository»</strong></a>
+  <br />
+  <br />
+ </p>
+
 </p>
+
 
 <!-- ABOUT THE PROJECT -->
 
