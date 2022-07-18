@@ -56,7 +56,7 @@ For that reason I used the Star Schema for data modeling in this ETL pipeline, t
 
 You can see an Entity Eelationship Diagram (ERD) of the built data model below:
 
-![database](./images/Project%201%20ERD.png)
+![database](./images/Project%201%20tables%20ERD.png)
 
 ## Project structure
 
