@@ -3,7 +3,7 @@
 
 <p align="center">
  </a>
- <h1 align="center">Data Engineering Nanodegree</h1>
+ <h1 align="center">Project 1 Data Modeling With PostgreSQL</h1>
  <p align="center">
   Udacity Nanodegree
   <br />
