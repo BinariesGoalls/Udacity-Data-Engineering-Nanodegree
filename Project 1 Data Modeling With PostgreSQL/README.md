@@ -65,7 +65,7 @@ In this case I knew before-hand that the data types are structured (JSONs) and t
 For that reason I used the Star Schema for data modeling in this ETL pipeline, there is one fact table containing all the metrics associated to each event songplays, and four dimensions tables, containing complementary informations about songs, artists, users and time, each with a primary key that is being referenced from the fact table. This structure will allow the analysts to do joins and aggregations of the data efficiently.
 
 
-You can see an Entity Eelationship Diagram (ERD) of the built data model below:
+You can see an Entity Relationship Diagram (ERD) of the built data model below:
 
 ![database](./images/Project%201%20tables%20ERD.png)
 
