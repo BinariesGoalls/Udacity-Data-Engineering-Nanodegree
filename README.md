@@ -35,7 +35,7 @@ You can find my demos and exercices related to this course [here](./Demos%20and%
 
 The first project can be found here [Project 1: Data Modeling with PostgreSQL](./Project%201%20Data%20Modeling%20With%20PostgreSQL). 
 
-The secont project can be found here [Project 2: Data Modeling with Apache Cassandra](./Project%202%20Data%20Modeling%20With%20Apache%20Cassandra). 
+The second project can be found here [Project 2: Data Modeling with Apache Cassandra](./Project%202%20Data%20Modeling%20With%20Apache%20Cassandra). 
 
 
 <!-- CONTACT -->
