@@ -71,7 +71,7 @@ This structure will allow the analysts to do joins and aggregations of the data 
 
 You can see an Entity Relationship Diagram (ERD) of the built data model below:
 
-![database](./images/Project%201%20tables%20ERD.png)
+![database](./images/Project%203%20tables%20ERD.png)
 
 ## Project structure
 
@@ -86,6 +86,7 @@ Files:
 |    tests.ipynb              | Basic querying from all tables created to ensure their validity                        |
 |   delete_resources.ipynb    | Destorys the Redshift cluster and the roles on AWS, if exists                          |
 |      dwh.cfg                | Sample configuration file for AWS                                                      |
+|      images                 | Folder at the root of the project, where ERD image is stored                           |
 |      README                 |                         Readme file                                                    |
 
 
