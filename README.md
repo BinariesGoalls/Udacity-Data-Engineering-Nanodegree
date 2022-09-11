@@ -37,6 +37,15 @@ The first project can be found here [Project 1: Data Modeling with PostgreSQL](.
 
 The second project can be found here [Project 2: Data Modeling with Apache Cassandra](./Project%202%20Data%20Modeling%20With%20Apache%20Cassandra). 
 
+#### **Course 2 – Cloud Data Warehouses**
+
+In this course, I’ll learn to create cloud-based data warehouses. I’ll sharpen my data warehousing skills, deepen my 
+understanding of data infrastructure, and be introduced to data engineering on the cloud using Amazon Web Services (AWS).
+
+You can find my demos and exercices related to this course [here](./Demos%20and%20Exercises/Cloud%20Data%20Warehouses).
+
+This course project can be found here [Project 3: Data Warehouse](./Project%203%20Data%20Warehouse). 
+
 
 <!-- CONTACT -->
 
