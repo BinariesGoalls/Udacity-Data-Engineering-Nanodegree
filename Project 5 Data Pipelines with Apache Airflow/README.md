@@ -66,7 +66,7 @@ The data stored on S3 buckets is staged and then inserted to fact and dimensiona
 
 You can see an Entity Relationship Diagram (ERD) of the built data model below:
 
-![database](./images/Project%203%20tables%20ERD.png)
+![database](./images/Project%204%20tables%20ERD.png)
 
 ## Apache Airflow Orchestration 
 
@@ -83,7 +83,7 @@ The DAG parameters are set according to the following :
 
 The DAG dependency graph is given below.
 
-![dag](./images/dag.png)
+![dag](./images/DAG.png)
 
 ### Operators
 
