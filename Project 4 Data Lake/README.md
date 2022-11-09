@@ -66,7 +66,7 @@ The data stored on S3 buckets is extracted and processed using Spark, and is the
 
 You can see an Entity Relationship Diagram (ERD) of the built data model below:
 
-![database](./images/Project%203%20tables%20ERD.png)
+![database](./images/Project%204%20tables%20ERD.png)
 
 ## Project structure
 
