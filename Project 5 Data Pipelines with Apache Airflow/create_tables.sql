@@ -1,34 +1,34 @@
-CREATE TABLE IF NOT EXISTS public.artists (
-	artist_id varchar(256) NOT NULL,
-	artist_name varchar(256),
-	artist_location varchar(256),
-	artist_lattitude numeric(18,0),
-	artist_longitude numeric(18,0)
+CREATE TABLE public.artists (
+	artistid varchar(256) NOT NULL,
+	name varchar(256),
+	location varchar(256),
+	lattitude numeric(18,0),
+	longitude numeric(18,0)
 );
 
-CREATE TABLE IF NOT EXISTS public.songplays (
-	songplay_id varchar(32) NOT NULL,
+CREATE TABLE public.songplays (
+	playid varchar(32) NOT NULL,
 	start_time timestamp NOT NULL,
 	userid int4 NOT NULL,
 	"level" varchar(256),
-	song_id varchar(256),
-	artist_id varchar(256),
+	songid varchar(256),
+	artistid varchar(256),
 	sessionid int4,
 	location varchar(256),
-	useragent varchar(256),
-	CONSTRAINT songplays_pkey PRIMARY KEY (songplay_id)
+	user_agent varchar(256),
+	CONSTRAINT songplays_pkey PRIMARY KEY (playid)
 );
 
-CREATE TABLE IF NOT EXISTS public.songs (
-	song_id varchar(256) NOT NULL,
+CREATE TABLE public.songs (
+	songid varchar(256) NOT NULL,
 	title varchar(256),
-	artist_id varchar(256),
+	artistid varchar(256),
 	"year" int4,
 	duration numeric(18,0),
-	CONSTRAINT songs_pkey PRIMARY KEY (song_id)
+	CONSTRAINT songs_pkey PRIMARY KEY (songid)
 );
 
-CREATE TABLE IF NOT EXISTS public.staging_events (
+CREATE TABLE public.staging_events (
 	artist varchar(256),
 	auth varchar(256),
 	firstname varchar(256),
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS public.staging_events (
 	userid int4
 );
 
-CREATE TABLE IF NOT EXISTS public.staging_songs (
+CREATE TABLE public.staging_songs (
 	num_songs int4,
 	artist_id varchar(256),
 	artist_name varchar(256),
@@ -62,22 +62,27 @@ CREATE TABLE IF NOT EXISTS public.staging_songs (
 	"year" int4
 );
 
-CREATE TABLE IF NOT EXISTS public.time (
+CREATE TABLE public."time" (
 	start_time timestamp NOT NULL,
-	hour int4,
-	day int4,
+	"hour" int4,
+	"day" int4,
 	week int4,
-	month varchar(255),
-	year int4,
-	weekday varchar(255),
-	CONSTRAINT times_pkey PRIMARY KEY (start_time)
+	"month" varchar(256),
+	"year" int4,
+	weekday varchar(256),
+	CONSTRAINT time_pkey PRIMARY KEY (start_time)
 );
 
-CREATE TABLE IF NOT EXISTS public.users (
+CREATE TABLE public.users (
 	userid int4 NOT NULL,
-	firstname varchar(256),
-	lastname varchar(256),
+	first_name varchar(256),
+	last_name varchar(256),
 	gender varchar(256),
 	"level" varchar(256),
 	CONSTRAINT users_pkey PRIMARY KEY (userid)
 );
+
+
+
+
+

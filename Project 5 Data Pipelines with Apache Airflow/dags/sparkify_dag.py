@@ -1,143 +1,134 @@
 from datetime import datetime, timedelta
-import datetime
 import os
-from airflow import conf
 from airflow import DAG
-from airflow.operators.postgres_operator import PostgresOperator
 from airflow.operators.dummy_operator import DummyOperator
-
-from airflow.operators import (StageToRedshiftOperator,
-                               LoadFactOperator,
-                               LoadDimensionOperator, 
-                               DataQualityOperator, 
-                               CreateTablesOperator)
-
+from airflow.operators import (StageToRedshiftOperator, LoadFactOperator,
+                                LoadDimensionOperator, DataQualityOperator)
 from helpers import SqlQueries
 
-start_date = datetime.datetime(2018, 11, 1)
-end_date = datetime.datetime(2018, 12, 31)
+# AWS_KEY = os.environ.get('AWS_KEY')
+# AWS_SECRET = os.environ.get('AWS_SECRET')
 
-# Default arguments
 default_args = {
-    'owner': 'Alisson Lima',
-    'start_date': start_date,
-    'end_date': end_date,
-    'depends_on_past': False,
-    'retries': 3,
-    'retry_delay': datetime.timedelta(minutes=5),
-    'catchup': False,
-    'email_on_retry': False
+    "owner": "BinariesGoalls",
+    "depends_on_past": False,
+    "retries": 3,
+    "retry_delay": timedelta(minutes=5),
+    "catchup": False,
+    "email_on_retry": False,
+    "start_date": datetime.now()
 }
 
-# DAG specification
-dag = DAG('sparkify_dag',
+dag = DAG("sparkify_dag",
           default_args=default_args,
-          description="Loads and transforms the data in Redshift with Airflow",
-          schedule_interval='0 * * * *',
-          max_active_runs=3
+          description="Load and transform data in Redshift with Airflow",
+          schedule_interval='0 * * * *'
         )
 
-start_operator = DummyOperator(task_id='Begin_execution',  dag=dag)
+# Dummy operator to start the DAG execution
+start_operator = DummyOperator(task_id="Begin_execution",  dag=dag)
 
-
-
-# Create tables using an operator
-create_redshift_tables = CreateTablesOperator(
-    task_id='Create_tables',
-    dag=dag,
-    redshift_conn_id="redshift"
-)
-
-# Stage events data to Redshift
+# Copying the events/log data from S3 to Redshift
 stage_events_to_redshift = StageToRedshiftOperator(
-    task_id='stage_events',
+    task_id="Stage_events",
     dag=dag,
-    provide_context=True,
-    table="staging_events",
-    redshift_conn_id="redshift",
+    conn_id="redshift",
     aws_credentials_id="aws_credentials",
+    table="staging_events",
     s3_bucket="udacity-dend",
     s3_key="log_data",
-    region="us-west-2",
-    file_format="JSON",
-    execution_date=start_date
+    json_path="s3://udacity-dend/log_json_path.json"
 )
 
-# Stage songs data to Redshift
+# Copying the songs data from S3 to Redshift
 stage_songs_to_redshift = StageToRedshiftOperator(
-    task_id='stage_songs',
+    task_id="Stage_songs",
     dag=dag,
-    provide_context=True,
-    table="staging_songs",
-    redshift_conn_id="redshift",
+    conn_id="redshift",
     aws_credentials_id="aws_credentials",
+    table="staging_songs",
     s3_bucket="udacity-dend",
     s3_key="song_data",
-    region="us-west-2",
-    data_format="JSON"
+    json_path="auto"
 )
 
-# Stage songplays data to Redshift
+# Loading the data from staging area tables into songplays fact table
 load_songplays_table = LoadFactOperator(
-    task_id='load_songplays_fact_table',
+    task_id="Load_songplays_fact_table",
     dag=dag,
-    provide_context=True,
-    redshift_conn_id="redshift",
-    sql_query=SqlQueries.songplay_table_insert
+    conn_id="redshift",
+    table="songplays",
+    query=SqlQueries.songplay_table_insert
 )
 
-# Load users dimension table
+# Loading the data from staging area tables into users dimension table
 load_user_dimension_table = LoadDimensionOperator(
     task_id='Load_user_dim_table',
-    dag=dag,   
-    redshift_conn_id="redshift",
+    dag=dag,
+    conn_id="redshift",
     table="users",
-    sql=SqlQueries.user_table_insert
+    query=SqlQueries.user_table_insert
 )
 
-# Load songs dimension table
+# Loading the data from staging area tables into songs dimension fact table
 load_song_dimension_table = LoadDimensionOperator(
     task_id='Load_song_dim_table',
     dag=dag,
-    redshift_conn_id="redshift",
+    conn_id="redshift",
     table="songs",
-    sql=SqlQueries.song_table_insert
+    query=SqlQueries.song_table_insert
 )
 
-# Load artists dimension table
+# Loading the data from staging area tables into artists dimension table
 load_artist_dimension_table = LoadDimensionOperator(
     task_id='Load_artist_dim_table',
     dag=dag,
-    redshift_conn_id="redshift",
+    conn_id="redshift",
     table="artists",
-    sql=SqlQueries.artist_table_insert
+    query=SqlQueries.artist_table_insert
 )
 
-# Load time dimension table
+# Loading the data from staging area tables into time dimension table
 load_time_dimension_table = LoadDimensionOperator(
-    task_id='Load_time_dim_table',
+    task_id="Load_time_dim_table",
     dag=dag,
-    redshift_conn_id="redshift",
+    conn_id="redshift",
     table="time",
-    sql=SqlQueries.time_table_insert
+    query=SqlQueries.time_table_insert
 )
 
-# Run quality checks on Redshift tables
+# Running data quality checks to ensure that the tables were loaded correctly
 run_quality_checks = DataQualityOperator(
-    task_id='run_data_quality_checks',
+    task_id="Run_data_quality_checks",
     dag=dag,
-    provide_context=True,
-    redshift_conn_id='redshift',
-    tables=["songplays", "users", "songs", "artists", "times"]
+    conn_id="redshift",
+    tables=[ "songplays", "songs", "artists",  "time", "users"]
 )
 
+# Dummy operator to finish the DAG execution
 end_operator = DummyOperator(task_id='Stop_execution',  dag=dag)
 
-# Setting tasks dependencies
-start_operator  \
-    >> create_redshift_tables \
-    >> [stage_songs_to_redshift, stage_events_to_redshift] \
-    >> load_songplays_table \
-    >> [load_user_dimension_table, load_song_dimension_table, load_artist_dimension_table, load_time_dimension_table] \
-    >> run_quality_checks \
-    >> end_operator
+#Defining the task dependencies
+
+#2nd layer
+start_operator >> stage_events_to_redshift
+start_operator >> stage_songs_to_redshift
+
+#3rd layer
+stage_events_to_redshift >> load_songplays_table
+stage_songs_to_redshift >> load_songplays_table
+
+#4th layer
+load_songplays_table >> load_song_dimension_table
+load_songplays_table >> load_user_dimension_table
+load_songplays_table >> load_artist_dimension_table
+load_songplays_table >> load_time_dimension_table
+
+#5th
+load_song_dimension_table >> run_quality_checks
+load_user_dimension_table >> run_quality_checks
+load_artist_dimension_table >> run_quality_checks
+load_time_dimension_table >> run_quality_checks
+
+#6th layer
+run_quality_checks >> end_operator
