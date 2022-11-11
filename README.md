@@ -46,6 +46,23 @@ You can find my demos and exercices related to this course [here](./Demos%20and%
 
 This course project can be found here [Project 3: Data Warehouse](./Project%203%20Data%20Warehouse). 
 
+#### **Course 3 – Spark and Data Lakes**
+
+In this course, i'll learn about the big data ecosystem and how to use Spark to work with
+massive datasets. I'll also learn about how to store big data in a data lake and query it with Spark.
+
+You can find my demos and exercices related to this course [here](./Demos%20and%20Exercises/Spark%20and%20Data%20Lakes).
+
+This course project can be found here [Project 4: Data Lake](./Project%204%20Data%20Lake). 
+
+#### **Course 4 – Automate Data Pipelines**
+
+In this course, I’ll learn how to schedule, automate, and monitor data pipelines using Apache Airflow. I’ll learn to run data quality checks, track data lineage, and work with data pipelines in production.
+
+You can find my demos and exercices related to this course [here](./).
+
+This course project can be found here [Project 5: Data Pipelines with Airflow](./Project%205%20Data%20Pipelines%20with%20Apache%20Airflow). 
+
 
 <!-- CONTACT -->
 
