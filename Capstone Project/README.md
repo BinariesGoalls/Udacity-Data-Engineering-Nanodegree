@@ -92,6 +92,21 @@ The pipeline consists on the following steps:
 * Perform the necessary transformations for storing it in the corresponding tables in the Star Schema
 * Do quality checks on the data
 
+### Step 4: Run Pipelines to Model the Data 
+#### 4.1 Create the data model
+
+Data processing and data model was created in Python.
+
+Please refer to:
+* [create_tables.py](https://github.com/BinariesGoalls/Udacity-Data-Engineering-Nanodegree/blob/main/Capstone%20Project/create_tables.py)
+* [etl.py](https://github.com/BinariesGoalls/Udacity-Data-Engineering-Nanodegree/blob/main/Capstone%20Project/etl.py)
+
+#### 4.2 Data Quality Checks
+
+The quality checks performed mainly check the load and quantity of records in the fact and dimension tables.
+
+Please refer to [test_queries.ipynb](https://github.com/BinariesGoalls/Udacity-Data-Engineering-Nanodegree/blob/main/Capstone%20Project/tests_queries.ipynb)
+
 ### How to run
 
 Follow the steps to extract and load the data into the data model.
