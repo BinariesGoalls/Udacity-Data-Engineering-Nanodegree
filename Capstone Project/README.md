@@ -62,6 +62,25 @@ The data sources are the company's e-commerce OLTP system tables, you can check 
 
 ![OLIST-OLTP-ERD](./images/OLIST-OLTP-ERD.png)
 
+### Step 2: Explore and Assess the Data
+
+Please refer to [inspection_notebook.ipynb](https://github.com/BinariesGoalls/Udacity-Data-Engineering-Nanodegree/blob/main/Capstone%20Project/inspection_notebook.ipynb).
+
+### Step 3: Define the Data Model
+#### 3.1 Conceptual Data Model
+
+Since the purpose of this data warehouse is for OLAP and BI app usage, we will model these data sets with star schema data modeling, the proposed data model consists of the following tables:
+
+* Fact table:
+    * fact_oders (order_id, product_id, date_key, seller_id, payment_key, customer_id, freight_value, price, order_items_qtd, order_status)  
+   
+* Dimension tables:
+    * dim_products (product_id, product_category_name)
+    * dim_date (date_key, date, year, quarter, month, day, week, is_weekend) 
+    * dim_sellers (seller_id, seller_zip_code_prefix, seller_city, seller_state, seller_geo_lat, seller_geo_lng)          
+    * dim_payments (payment_key, order_id, payment_sequential, payment_type, payment_installments)
+    * dim_customers (customer_id, customer_zip_code_prefix, customer_city, customer_state, customer_geo_lat, customer_geo_lng)         
+
 ### How to run
 
 Follow the steps to extract and load the data into the data model.
