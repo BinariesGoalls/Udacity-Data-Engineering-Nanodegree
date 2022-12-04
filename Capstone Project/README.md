@@ -150,7 +150,7 @@ Follow the steps to extract and load the data into the data model.
 7. Fill the information on the `dwh.cfg` file
 8. Upload the datasets on the S3 bucket
 9. Run `create_tables.py` to create/reset the tables.
-10.Run `etl.py` process and load data into database.This will execute SQL queries corresponding to staging data from S3 on Redshift and to transform and insert into the Postgres tables on Redshift.
+10. Run `etl.py` process and load data into database.This will execute SQL queries corresponding to staging data from S3 on Redshift and to transform and insert into the Postgres tables on Redshift.
 11. Run queries on the notebook `tests_queries.ipynb` to validate the entry of data into tables.
 
 <!-- CONTACT -->
