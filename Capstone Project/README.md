@@ -79,7 +79,18 @@ Since the purpose of this data warehouse is for OLAP and BI app usage, we will m
     * dim_date (date_key, date, year, quarter, month, day, week, is_weekend) 
     * dim_sellers (seller_id, seller_zip_code_prefix, seller_city, seller_state, seller_geo_lat, seller_geo_lng)          
     * dim_payments (payment_key, order_id, payment_sequential, payment_type, payment_installments)
-    * dim_customers (customer_id, customer_zip_code_prefix, customer_city, customer_state, customer_geo_lat, customer_geo_lng)         
+    * dim_customers (customer_id, customer_zip_code_prefix, customer_city, customer_state, customer_geo_lat, customer_geo_lng)
+
+![OLIST-OLAP-ERD](./images/Capstone%20Project%20ERD.png)   
+
+#### 3.2 Mapping Out Data Pipelines
+
+The pipeline consists on the following steps:
+
+* Store the data into Amazon S3
+* Stage the data from S3 to Redshift
+* Perform the necessary transformations for storing it in the corresponding tables in the Star Schema
+* Do quality checks on the data
 
 ### How to run
 
