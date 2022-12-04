@@ -107,18 +107,51 @@ The quality checks performed mainly check the load and quantity of records in th
 
 Please refer to [test_queries.ipynb](https://github.com/BinariesGoalls/Udacity-Data-Engineering-Nanodegree/blob/main/Capstone%20Project/tests_queries.ipynb)
 
+### Step 5: Complete Project Write Up
+
+#### Tools and Technologies
+1. AWS S3 for data storage
+2. AWS Redshift as Data Warehouse
+3. Python
+4. PostgreSQL
+5. Jupyter Notebooks
+
+
+#### Data Update Frequency
+1. Depending on how frenquently you would like to inspect Data Engineering jobs, we could feed data into the corresponding S3 buckets and generate the reports. A weekly schedule should be enough for checking how the market is changing.
+2. All tables should be update in an append-only mode.
+
+
+#### Future Design Considerations
+1. The data was increased by 100x.
+	
+If the data was increaed by 100x an alternative is to use Spark alongside [AWS EMR](https://aws.amazon.com/tw/emr/?nc2=h_ql_prod_an_emr&whats-new-cards.sort-by=item.additionalFields.postDateTime&whats-new-cards.sort-order=desc) which is a distributed data cluster for processing large data sets on cloud.
+
+2. The data populates a dashboard that must be updated on a daily basis by 7am every day.
+
+In this case we can build a pipeline using [Apache Airflow](https://airflow.apache.org) to regularly update the data and populate a report. Apache Airflow also integrate with Python and AWS very well. More applications can be combined together to deliever more powerful task automation.
+
+3. The database needed to be accessed by 100+ people.
+
+For this case we can still use [AWS Redshift](https://aws.amazon.com/tw/redshift/?nc2=h_ql_prod_db_rs&whats-new-cards.sort-by=item.additionalFields.postDateTime&whats-new-cards.sort-order=desc), it handles up to 500 connections. If this SSOT database will be accessed by 100+ people, we can move this database to Redshift with confidence to handle this request. Cost/Benefit analysis will be needed if we are going be implement this cloud solution.
+
+---
+
 ### How to run
 
 Follow the steps to extract and load the data into the data model.
 
-1. Set up Apache Airflow to run in local
-2. Create an IAM User in AWS.
-3. Create a redshift cluster in AWS.
-4. Create a connection to AWS in the Airflow Web UI.
-5. Create a connection to the Redshift Cluster in the Airflow Web UI.
-6. Create the tables manually on the Redshift Cluster Query Editor using the ```create_tables.sql``` file.
-6. In Airflow, turn the DAG execution to ON and eecute it.
-7. View the Web UI for detailed insights about the operation.
+1. Navigate to `Capstone Project` folder
+2. Create a S3 bucket on AWS
+3. Create a cluster on AWS Redshift
+4. Create a IAM user
+5. Create a IAM role giving the correct acesses to S3 and Reshift
+6. Link the role with the S3 bucket and the Redshift cluster
+7. Fill the information on the `dwh.cfg` file
+8. Upload the datasets on the S3 bucket
+9. Run `create_tables.py` to create/reset the tables.
+10.Run `etl.py` process and load data into database.This will execute SQL queries corresponding to staging data from S3 on Redshift and to transform and insert into the Postgres tables on Redshift.
+11. Run queries on the notebook `tests_queries.ipynb` to validate the entry of data into tables.
 
 <!-- CONTACT -->
 
