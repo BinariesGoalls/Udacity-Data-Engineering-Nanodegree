@@ -3,7 +3,7 @@
 
 <p align="center">
  </a>
- <h1 align="center">Project 5 Data Pipelines with Airflow</h1>
+ <h1 align="center">Capstone Project: ETL Pipeline for a Brazillian E-Commerce</h1>
  <p align="center">
   Udacity Nanodegree
   <br />
@@ -17,30 +17,50 @@
 
 <!-- ABOUT THE PROJECT -->
 
-## About The Project
+## Project Summary
 
-In this project, we will build data pipelines using Apache Airflow using custom defined operators to perform tasks such as staging the data, filling the data warehouse, and running checks on the data as the final step.
+Olist is a Brazilian startup with headquarter in Curitiba. Its business model is of the e-commerce type, with the main objective of helping people who sell a product to find buyers in all Brazilian e-commerce.
 
-### Project Description
+Olist has been growing a lot in recent years, due to the increase in new users and also the increase in transactions on its platform. And a company's growing pains are inevitable, especially with data.
 
-A startup called Sparkify wants to analyze the data they've been collecting on songs and user activity on their new music streaming application. Sparkify has decided that it is time to introduce more automation and monitoring to their data warehouse ETL pipelines and have come to the conclusion that the best tool to achieve this is Apache Airflow.
+The whole system extends its capacity, both in terms of processing and in terms of data storage, and consequently the query time to databases increases, impacting the speed of analysis and the time to update metrics in dashboards.
 
-They'd like a data engineer to create high grade data pipelines that are dynamic and built from reusable tasks, can be monitored, and allow easy backfills. They have also noted that the data quality plays a big part when analyses are executed on top the data warehouse and want to run data quality tests against their datasets after the ETL steps have been executed to catch any discrepancies in the datasets.
+The objective of this project was to create an ETL pipeline on the olist datasets to create a analytic Data Warehouse on Amazon Redshift. A use case for this analytic database is to find answers for some questions such as "Has the amount of sales has increased over time?", "Which product categories are top sellers?", "What is the total turnover?", et cetera.
 
-The source data resides in S3 and needs to be processed in Sparkify's data warehouse in Amazon Redshift. The source datasets consist of JSON logs that tell about user activity in the application and JSON metadata about the songs the users listen to.
+With this in mind, the project will follow these steps:
 
-### Tools Used
+* Step 1: Scope the Project and Gather Data
+* Step 2: Explore and Assess the Data
+* Step 3: Define the Data Model
+* Step 4: Run ETL to Model the Data
+* Step 5: Complete Project Write Up
 
-* Python
-* AWS
-* Apache Airflow
+### Step 1: Scope the Project and Gather Data
+#### Scope
 
-### Datasets
-#### Song Dataset
+In this project, we will aggregate the total of eight datasets that represents each one of the tables from the Olist e-commerce OLTP database, with the objective to model this source of data into “Fact” and “Dimension” tables for the analytics team.
 
-This first dataset is a subset of [Million Song Dataset](http://millionsongdataset.com/). Each file in the dataset is in JSON format and contains meta-data about a song and the artist of that song. The dataset is hosted at S3 bucket `s3://udacity-dend/song_data`.
+The final solution proposed is a pipeline built upon Python for ingesting data from Amazon S3 into a Redshift Data Warehouse, running transformations on Redshift and saving them into a proposed Star Schema model.
 
-Sample :
+#### Describe and Gather Data
+
+**Data Source** <br>
+
+Brazilian E-Commerce Public Datasets by Olist <br>
+
+https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
+
+**Content** <br>
+
+Olist is the largest department store on marketplaces. It has a catalog with over 950,000 products, hundreds of thousands of orders and a network of over 9,000 partner retailers spread across all regions of Brazil. 
+
+All the files use the CSV format.
+
+**Model** <br>
+
+The data sources are the company's e-commerce OLTP system tables, you can check the ERD of the system in the figure below.
+
+![database](./images/Project%204%20tables%20ERD.png)
 
 ```
 {"num_songs": 1, "artist_id": "ARJIE2Y1187B994AB7", "artist_latitude": null, "artist_longitude": null, "artist_location": "", "artist_name": "Line Renaud", "song_id": "SOUPIRU12A6D4FA1E1", "title": "Der Kleine Dompfaff", "duration": 152.92036, "year": 0}
