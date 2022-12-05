@@ -17,6 +17,8 @@
 
 <!-- ABOUT THE PROJECT -->
 
+![Certificate of Completion](./Udacity%20Data%20Engineering%20Nanodegree%20Certificate.png)
+
 ## About The Nanodegree
 
 You can check more details about the nanodegree program on this link: <a href=https://www.udacity.com/course/data-engineer-nanodegree--nd027><strong>Data Engineering Nanodegree</strong></a>
