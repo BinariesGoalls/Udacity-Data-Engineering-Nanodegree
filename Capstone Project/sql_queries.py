@@ -230,7 +230,6 @@ dim_payments_table_create= (
             payment_sequential      SMALLINT    NOT NULL,
             payment_type            VARCHAR     NOT NULL,
             payment_installments    SMALLINT    NOT NULL
-
         );
         """
 )  
@@ -253,11 +252,10 @@ fact_orders_table_create= (
         """
         CREATE TABLE fact_orders
         (
-            order_id            VARCHAR     NOT NULL,
+            order_id            VARCHAR     SORTKEY PRIMARY KEY,
             product_id          VARCHAR     NOT NULL,
             date_key            INTEGER     NOT NULL,
             seller_id           VARCHAR     NOT NULL,
-            payment_key         INTEGER     NOT NULL,
             customer_id         VARCHAR     NOT NULL,
             freight_value       FLOAT       NOT NULL,
             price               FLOAT       NOT NULL,
@@ -266,9 +264,11 @@ fact_orders_table_create= (
             FOREIGN KEY (product_id)     REFERENCES    dim_products(product_id),
             FOREIGN KEY (date_key)         REFERENCES    dim_date(date_key),
             FOREIGN KEY (seller_id)      REFERENCES    dim_sellers(seller_id),
-            FOREIGN KEY (payment_key)     REFERENCES    dim_payments(payment_key),
             FOREIGN KEY (customer_id)    REFERENCES    dim_customers(customer_id)
         );
+        
+        ALTER TABLE dim_payments
+        ADD FOREIGN KEY (order_id) REFERENCES fact_orders(order_id);
         """
 )  
 
@@ -443,24 +443,22 @@ dim_customers_table_insert= (
 
 fact_orders_table_insert= (
         """
-        INSERT INTO fact_orders (order_id, product_id, date_key, seller_id, payment_key, customer_id, freight_value, price, order_items_qtd, order_status)
-        SELECT o.order_id,
+        INSERT INTO fact_orders (order_id, product_id, date_key, seller_id, customer_id, freight_value, price, order_items_qtd, order_status)
+        SELECT DISTINCT o.order_id,
                p.product_id AS product_id,
                TO_CHAR(o.order_purchase_timestamp :: DATE, 'yyyyMMDD')::integer AS date_key,
                s.seller_id as seller_id,
-               pm.payment_key,
                c.customer_id as customer_id,
-               SUM(i.freight_value),
-               SUM(i.price),
-               COUNT(*) as order_items_qtd,
+               sum(i.freight_value),
+               sum(i.price),
+               count(*) as order_items_qtd,
                o.order_status
         FROM staging_orders o
             JOIN staging_items i ON (o.order_id = i.order_id)
             JOIN staging_products p ON (i.product_id = p.product_id)
             JOIN staging_sellers s ON (i.seller_id = s.seller_id)
             JOIN staging_customers c ON (o.customer_id = c.customer_id)
-            JOIN dim_payments pm ON (o.order_id = pm.order_id)
-        GROUP BY o.order_id, p.product_id, TO_CHAR(o.order_purchase_timestamp :: DATE, 'yyyyMMDD')::integer, s.seller_id, pm.payment_key, c.customer_id, o.order_status;
+        GROUP BY o.order_id, p.product_id, TO_CHAR(o.order_purchase_timestamp :: DATE, 'yyyyMMDD')::integer, s.seller_id, c.customer_id, o.order_status;
         """
 )  
 

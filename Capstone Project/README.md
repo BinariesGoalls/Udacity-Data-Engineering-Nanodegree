@@ -107,14 +107,64 @@ The quality checks performed mainly check the load and quantity of records in th
 
 Please refer to [test_queries.ipynb](https://github.com/BinariesGoalls/Udacity-Data-Engineering-Nanodegree/blob/main/Capstone%20Project/tests_queries.ipynb)
 
+#### 4.3 Data Dictionary
+
+##### dim_date table
+* date_key: primary key generated from the timestamp of the order
+* date: date of the order
+* year: year of the order
+* quarter: quarter of the order
+* month: month of the order
+* day: day of the order
+* week: week of the order
+* is_weeknd: indicator if it is weekday or not
+
+##### dim_products table
+* product_id: primary key, identifier of the product
+* product_category_name: category description of the product
+
+##### dim_sellers table
+* seller_id: primary key, identifier of the seller
+* seller_zip_code_prefix: seller address zip code description
+* seller_city: seller address city description
+* seller_state: seller address state description
+* seller_geo_lat: seller address latitude location value
+* seller_geo_lng: seller address longidute location value
+
+##### dim_payments table
+* payments_key: primary key, generated identifier for the payment
+* order_id: foreign key, identifier of the order linked to payment
+* payment_sequential: payment sequential
+* payment_type: payment type description (credit card, et cetera)
+* payment_installments: number of installments of the payment
+
+##### dim_customers table
+* customer_id: primary key, identifier of the customer
+* customer_zip_code_prefix: customer address zip code description
+* customer_city: customer address city description
+* customer_state: customer address state description
+* customer_geo_lat: customer address latitude location value
+* customer_geo_lng: customer address longidute location value
+
+##### fact_orders table
+* order_id: primary key, identifier of the order
+* product_id: foreign key, identifier of the product linked to the order
+* date_key: foreign key, identifier of the date register linked to the order
+* seller_id: foreign key, identifier of the seller linked to the order
+* customer_id: foreign key, identifier of the customer linked to the order
+* freight_value: order product freight value 
+* price: order product price
+* order_items_qtd: order products quantity description
+* order_status: current status of the order
+
 ### Step 5: Complete Project Write Up
 
 #### Tools and Technologies
-1. AWS S3 for data storage
-2. AWS Redshift as Data Warehouse
-3. Python
-4. PostgreSQL
-5. Jupyter Notebooks
+1. **AWS S3 for data storage** (Because it offers industry-leading scalability, data availability, security, and performance)
+2. **AWS Redshift as Data Warehouse** (Because it is a powerful analytics system that integrates well with database)
+3. **Python** (Because it uses a simplified syntax with an emphasis on natural language)
+4. **PostgreSQL** (Because it is an advanced open-source object-relational system which applies SQL language)
+5. **Jupyter Notebooks** (Because it allows users to compile all aspects of a data project in one place making it easier to show the entire process of a project to your intended audience)
 
 
 #### Data Update Frequency
