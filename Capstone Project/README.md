@@ -160,11 +160,11 @@ Please refer to [test_queries.ipynb](https://github.com/BinariesGoalls/Udacity-D
 ### Step 5: Complete Project Write Up
 
 #### Tools and Technologies
-1. AWS S3 for data storage
-2. AWS Redshift as Data Warehouse
-3. Python
-4. PostgreSQL
-5. Jupyter Notebooks
+1. **AWS S3 for data storage** (Because it offers industry-leading scalability, data availability, security, and performance)
+2. **AWS Redshift as Data Warehouse** (Because it is a powerful analytics system that integrates well with database)
+3. **Python** (Because it uses a simplified syntax with an emphasis on natural language)
+4. **PostgreSQL** (Because it is an advanced open-source object-relational system which applies SQL language)
+5. **Jupyter Notebooks** (Because it allows users to compile all aspects of a data project in one place making it easier to show the entire process of a project to your intended audience)
 
 
 #### Data Update Frequency
