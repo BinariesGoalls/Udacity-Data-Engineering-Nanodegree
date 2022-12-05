@@ -63,6 +63,12 @@ You can find my demos and exercices related to this course [here](./).
 
 This course project can be found here [Project 5: Data Pipelines with Airflow](./Project%205%20Data%20Pipelines%20with%20Apache%20Airflow). 
 
+#### **Capstone Project**
+
+In this module I have combined my new skills by completing a capstone project.
+
+The project can be found here [Capstone Project: ETL Pipeline for a Brazillian E-Commerce](./Capstone%20Project). 
+
 
 <!-- CONTACT -->
 
